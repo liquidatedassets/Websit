@@ -1,0 +1,62 @@
+{
+    "user1": {
+        "S": [],
+        "A": [],
+        "B": [
+            "A Minecraft Movie"
+        ],
+        "undefined": [],
+        "C": [],
+        "D": [
+            "Alvin and the Chipmunks 2",
+            "Amazing Spiderman 2",
+            "Antman"
+        ],
+        "E": [],
+        "F": []
+    },
+    "user2": {
+        "S": [
+            "A Minecraft Movie"
+        ],
+        "A": [],
+        "B": [],
+        "C": [],
+        "D": [],
+        "E": [],
+        "F": []
+    },
+    "user3": {
+        "S": [],
+        "A": [],
+        "B": [],
+        "C": [],
+        "D": [],
+        "E": [],
+        "F": [],
+        "undefined": []
+    },
+    "user4": {
+        "S": [],
+        "A": [],
+        "B": [],
+        "C": [],
+        "D": [],
+        "E": [],
+        "F": [],
+        "undefined": []
+    },
+    "average": {
+        "S": [
+            "A Minecraft Movie"
+        ],
+        "A": [],
+        "B": [],
+        "C": [],
+        "D": [],
+        "E": [
+            "Alvin and the Chipmunks"
+        ],
+        "F": []
+    }
+}
