@@ -10,9 +10,22 @@ body {
   background-color: #1D1C1D;
   background-image: url("images/background.jpg");
   background-size: 100%;
+
+}
+
+.width1200{
   min-width: 1200px;
   width: 1200px;
 }
+
+.width100p{
+  width: 100%;
+}
+
+.width50p{
+  width: 50%;
+}
+
 .width100{
     min-width: 100px;
     width: 100px;
@@ -191,6 +204,10 @@ body {
 .pnotop {
    padding-top:0px; 
 }
+
+.pnoleft {
+  padding-left:0px; 
+}
 .p16noright {
     padding-top:16px;
     padding-left:16px;
@@ -225,9 +242,25 @@ hr.mn {
   }
 /* Font stuffs */
 .w11 {
-    width:calc(11.1% - 12px);
+    width:calc(20% - 12px);
     margin-left:6px;
     margin-right:6px
+  }
+
+  .w50 {
+    width:calc(45% - 12px);
+    margin-left:6px;
+    margin-right:6px
+  }
+
+  .w100 {
+    width:calc(100% - 12px);
+    margin-left:6px;
+    margin-right:6px
+  }
+
+  .minwidth {
+    max-width: min-content;
   }
 .bold {
   font-weight: bold

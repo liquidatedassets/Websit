@@ -87,9 +87,9 @@ function createMovieElement(movie, imagePath, isUnranked = false, isAverage = fa
     
     // Set appropriate classes based on context
     if (isUnranked || isAverage) {
-        li.className = 'movie-item inseter-panel m8 no width100';
+        li.className = 'movie-item inseter-panel m8 no minwidth';
     } else {
-        li.className = 'movie-item m8 no w11';
+        li.className = 'movie-item m8 no minwidth';
     }
     
     // Create the structure to match your HTML template

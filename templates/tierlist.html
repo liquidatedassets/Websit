@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <title>tierlist</title>
     <link rel="stylesheet" href="static/style.css">
+    <style>
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 </head>
-<body>
+<body >
     <div class="status" id="status">
         <span class="disconnected"></span>
     </div>
@@ -15,62 +17,107 @@
         
     </div>
     <h1>tear list</h1>
-    {% for user in users %}
-        <div class = "panel flex-column"> 
-            <h2>{{ user }}</h2>
-            <div class="tierlist flex-column inset-panel" data-user="{{ user }}">
-                {% for tier in tiers %}
-                    <div class="tier flex-row mt0" data-tier="{{ tier }}">
-                        <div class = " inseter-panel mt0">
-                            <h3 class = "flex-align-center">{{ tier }}</h3>
+    <div class = "flex-row flex-center">
+    <!-- First group - users at indices 0, 2, 4, etc. -->
+    <div class=" flex-column width50p">
+        {% for user in users %}
+            {% if loop.index0 % 2 == 0 %}
+            <div class="panel flex-column"> 
+                <h2>{{ user }}</h2>
+                <div class="tierlist flex-column inset-panel" data-user="{{ user }}">
+                    {% for tier in tiers %}
+                        <div class="tier flex-row mt0" data-tier="{{ tier }}">
+                            <div class="inseter-panel mt0">
+                                <h3 class="flex-align-center">{{ tier }}</h3>
+                            </div>
+                            <ul class="movie-list inseter-panel flex-row-wrap fill flex-start mt0 ml8">
+                                {% for movie in rankings[user][tier] %}
+                                    <li class="movie-item m8 no minwidth">
+                                        <div class="movie-name tier wrap-text flex-row p8 pnotop gaybox ">{{ movie }}</div>
+                                        <img src="{{ url_for('static', filename='movies/' + movie_files[movie]) }}" width="100" height="125" alt="{{ movie }}" class="movie-image tier flex-row" />
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         </div>
-                        <ul class="movie-list inseter-panel flex-row-wrap fill flex-start mt0 ml8">
-                            {% for movie in rankings[user][tier] %}
-                                <li class="movie-item  m8 no w11">
-                                    <div class="movie-name tier wrap-text flex-row p8 pnotop gaybox">{{ movie }}</div>
-                                    <img src="{{ url_for('static', filename='movies/' + movie_files[movie]) }}" width="100" height="125" alt="{{ movie }}" class="movie-image tier  flex-row" />
+                    {% endfor %}
+                    <button type="button" class="button collapsible">Unranked Movies</button>
+                    <div class="unranked-section collapsible-content">
+                        <h3>Unranked Movies</h3>
+                        <ul class="movie-list unranked flex-row-wrap p16 m16 flex-start">
+                            {% for movie in unranked_movies[user] %}
+                                <li class="movie-item m8 no minwidth">
+                                    <div class="movie-name wrap-text flex-row p16 gaybox">{{ movie }}</div>
+                                    <img src="{{ url_for('static', filename='movies/' + movie_files[movie]) }}" width="100" height="125" alt="{{ movie }}" class="movie-image" />
                                 </li>
-                            
                             {% endfor %}
                         </ul>
                     </div>
-                {% endfor %}
-                <button type="button" class="button collapsible">Unranked Movies</button>
-                <div class="unranked-section collapsible-content">
-                    <h3>Unranked Movies</h3>
-                    <ul class="movie-list unranked flex-row-wrap p16 m16 flex-start">
-                        {% for movie in unranked_movies[user] %}
-                            <li class="movie-item inseter-panel m8 no width100">
-                                <div class="movie-name wrap-text flex-row p16 gaybox">{{ movie }}</div>
-                                <img src="{{ url_for('static', filename='movies/' + movie_files[movie]) }}" width="100" height="125" alt="{{ movie }}" class="movie-image" />
-                            </li>
-                        
-                        {% endfor %}
-                    </ul>
                 </div>
             </div>
-        </div>
-    {% endfor %}
-    <h2>Average Tierlist</h2>
-        <!-- In tierlist.html, modify the average tierlist section -->
-        <div class="tierlist average inset-panel p16 mt32 flex-column" data-user="average">
-            {% for tier in tiers %}
-                <div class="tier flex-row" data-tier="{{ tier }}">
-                    <div class="p16 m16 inseter-panel">
-                        <h3 class="flex-align-center">{{ tier }}</h3>
-                    </div>
-                    <ul class="movie-list inseter-panel flex-row-wrap p16 m16 fill flex-start">
-                        {% for movie in average[tier] %}
-                            <li class="movie-item m8 no width100">
-                                <div class="movie-name wrap-text flex-row p16 gaybox">{{ movie }}</div>
-                                <img src="{{ url_for('static', filename='movies/' + movie_files[movie]) }}" width="100" height="125" alt="{{ movie }}" class="movie-image" />
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endfor %}
-        </div>
+            {% endif %}
+        {% endfor %}
     </div>
+    
+    <!-- Second group - users at indices 1, 3, 5, etc. -->
+    <div class=" flex-column width50p">
+        {% for user in users %}
+            {% if loop.index0 % 2 == 1 %}
+            <div class="panel flex-column"> 
+                <h2>{{ user }}</h2>
+                <div class="tierlist flex-column inset-panel" data-user="{{ user }}">
+                    {% for tier in tiers %}
+                        <div class="tier flex-row mt0" data-tier="{{ tier }}">
+                            <div class="inseter-panel mt0">
+                                <h3 class="flex-align-center">{{ tier }}</h3>
+                            </div>
+                            <ul class="movie-list inseter-panel flex-row-wrap fill flex-start mt0 ml8">
+                                {% for movie in rankings[user][tier] %}
+                                    <li class="movie-item m8 no minwidth">
+                                        <div class="movie-name tier wrap-text flex-row p8 pnotop gaybox ">{{ movie }}</div>
+                                        <img src="{{ url_for('static', filename='movies/' + movie_files[movie]) }}" width="100" height="125" alt="{{ movie }}" class="movie-image tier flex-row" />
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                    <button type="button" class="button collapsible ">Unranked Movies</button>
+                    <div class="unranked-section collapsible-content ">
+                        <h3>Unranked Movies</h3>
+                        <ul class="movie-list pnoleft unranked flex-row-wrap p16 m16 flex-start">
+                            {% for movie in unranked_movies[user] %}
+                                <li class="movie-item inseter-panel m8 no minwidth">
+                                    <div class="movie-name wrap-text flex-row p16 gaybox">{{ movie }}</div>
+                                    <img src="{{ url_for('static', filename='movies/' + movie_files[movie]) }}" width="100" height="125" alt="{{ movie }}" class="movie-image" />
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+    <h2>Average Tierlist</h2>
+    <!-- In tierlist.html, modify the average tierlist section -->
+    <div class="tierlist average inset-panel p16 mt32 flex-column  " data-user="average">
+        {% for tier in tiers %}
+            <div class="tier flex-row" data-tier="{{ tier }}">
+                <div class="p16 m16 inseter-panel">
+                    <h3 class="flex-align-center">{{ tier }}</h3>
+                </div>
+                <ul class="movie-list inseter-panel flex-row-wrap p16 m16 fill flex-start">
+                    {% for movie in average[tier] %}
+                        <li class="movie-item m8 no minwidth">
+                            <div class="movie-name wrap-text flex-row p16 gaybox">{{ movie }}</div>
+                            <img src="{{ url_for('static', filename='movies/' + movie_files[movie]) }}" width="100" height="125" alt="{{ movie }}" class="movie-image" />
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+    
     <!-- Include your existing JavaScript -->
     <script src="{{ url_for('static', filename='main.js') }}"></script>
     

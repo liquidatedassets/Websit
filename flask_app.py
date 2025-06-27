@@ -183,4 +183,4 @@ def handle_cursor_move(data):
         }, broadcast=True, include_self=False)
 if __name__ == '__main__':
     os.makedirs('data', exist_ok=True)
-    socketio.run(app, debug=True, host='0.0.0.0', port=8080)
+    socketio.run(app, debug=True, host='0.0.0.0', port=5000)
