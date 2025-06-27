@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <title>tierlist</title>
     <link rel="stylesheet" href="static/style.css">
-    <style>
-    </style>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 </head>
@@ -45,9 +43,20 @@
                         <h3>Unranked Movies</h3>
                         <ul class="movie-list unranked flex-row-wrap p16 m16 flex-start">
                             {% for movie in unranked_movies[user] %}
-                                <li class="movie-item m8 no minwidth">
+                                <li class="movie-item inseter-panel m8 no minwidth">
                                     <div class="movie-name wrap-text flex-row p16 gaybox">{{ movie }}</div>
                                     <img src="{{ url_for('static', filename='movies/' + movie_files[movie]) }}" width="100" height="125" alt="{{ movie }}" class="movie-image" />
+                                    <div>
+                                        {% for tier in tiers %}
+                                            <button class="button border0 {{ tier.lower() }}" 
+                                                    data-movie="{{ movie }}" 
+                                                    data-tier="{{ tier }}" 
+                                                    data-user="{{ user }}"
+                                                    onclick="moveMovieToTier('{{ movie }}', '{{ tier }}', '{{ user }}')">
+                                                {{ tier }}
+                                            </button>
+                                        {% endfor %}
+                                    </div>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -88,6 +97,17 @@
                                 <li class="movie-item inseter-panel m8 no minwidth">
                                     <div class="movie-name wrap-text flex-row p16 gaybox">{{ movie }}</div>
                                     <img src="{{ url_for('static', filename='movies/' + movie_files[movie]) }}" width="100" height="125" alt="{{ movie }}" class="movie-image" />
+                                    <div>
+                                        {% for tier in tiers %}
+                                            <button class="button {{ tier.lower() }}" 
+                                                    data-movie="{{ movie }}" 
+                                                    data-tier="{{ tier }}" 
+                                                    data-user="{{ user }}"
+                                                    onclick="moveMovieToTier('{{ movie }}', '{{ tier }}', '{{ user }}')">
+                                                {{ tier }}
+                                            </button>
+                                        {% endfor %}
+                                    </div>
                                 </li>
                             {% endfor %}
                         </ul>

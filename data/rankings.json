@@ -36,7 +36,8 @@
             "Knives Out",
             "Spiderman No Way home",
             "The Rehearsal (s1)",
-            "Venom 3"
+            "Venom 3",
+            "The Big Short"
         ],
         "B": [
             "Captain America the Winter Sodier",
@@ -87,14 +88,16 @@
         ]
     },
     "user2": {
-        "S": [],
+        "S": [
+            "A Minecraft Movie"
+        ],
+        "undefined": [],
         "A": [],
         "B": [],
         "C": [],
         "D": [],
         "E": [],
-        "F": [],
-        "undefined": []
+        "F": []
     },
     "user3": {
         "S": [],
@@ -113,8 +116,7 @@
         "C": [],
         "D": [],
         "E": [],
-        "F": [],
-        "undefined": []
+        "F": []
     },
     "average": {
         "S": [
